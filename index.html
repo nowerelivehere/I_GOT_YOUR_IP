@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>I GOT YOUR IP</title>
+  <style>
+    body {
+      background-color: black;
+      text-align: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin-top: 50px;
+    }
+    #playButton {
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #ff0000;
+      border: none;
+      color: white;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <img src="image.png" alt="Image qui fait peur" style="max-width:80%;" />
+  
+  <audio id="audio" autoplay muted loop>
+    <source src="bass-boosted.mp3" type="audio/mpeg" />
+    Votre navigateur ne supporte pas l'audio.
+  </audio>
+  
+  <button id="playButton" style="display:none;">Lancer le son</button>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const playButton = document.getElementById('playButton');
+
+    audio.play().then(() => {
+      audio.muted = false; // enlève le mute si la lecture a réussi
+    }).catch(() => {
+      // Autoplay bloqué, afficher le bouton pour que l'utilisateur lance le son
+      playButton.style.display = 'inline-block';
+    });
+
+    playButton.addEventListener('click', () => {
+      audio.play();
+      audio.muted = false;
+      playButton.style.display = 'none';
+    });
+
+    // Redirection après 10 secondes
+    setTimeout(() => {
+      window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    }, 10000);
+  </script>
+</body>
+</html>
+<!--
+  Ce code HTML crée une page qui affiche une image et joue un son en boucle.
+  Si l'autoplay est bloqué, un bouton est affiché pour permettre à l'utilisateur de lancer le son manuellement.
+  Après 10 secondes, la page redirige vers une vidéo YouTube.
